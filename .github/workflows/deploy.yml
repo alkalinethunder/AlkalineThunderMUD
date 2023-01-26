@@ -24,12 +24,13 @@ jobs:
       - name: Build
         run:
           cd src;
-          dotnet build --configuration Release --no-restore
+          dotnet build --configuration Release --no-restore;
+          dotnet publish -c Release -o ../dotnet-app -r linux-x64 --self-contained true
       - name: rsync deployments
         uses: burnett01/rsync-deployments@5.2.1
         with:
           switches: -avzr --delete --exclude="" --include="" --filter=""
-          path: src/AlkalineThunderMud.Shell/bin/Release/net7.0/
+          path: dotnet-app
           remote_path: ${{ secrets.DEPLOY_PATH }}/mud
           remote_host: ${{ secrets.DEPLOY_HOST }}
           remote_port: ${{ secrets.DEPLOY_PORT }}
