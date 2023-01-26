@@ -5,6 +5,13 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlkalineThunderMud.Shell", "AlkalineThunderMud.Shell\AlkalineThunderMud.Shell.csproj", "{AC729F1E-F849-477C-96D0-1BF5443B247A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Repo Root", "Repo Root", "{44DD8728-2AE8-49D6-AB69-89FBA46901C0}"
+	ProjectSection(SolutionItems) = preProject
+		..\LICENSE = ..\LICENSE
+		..\README.md = ..\README.md
+		..\.github\actions\deploy.yml = ..\.github\actions\deploy.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
