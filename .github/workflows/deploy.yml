@@ -18,11 +18,11 @@ jobs:
           dotnet-version: ${{ matrix.dotnet-version }}
       - name: Install dependencies
         run: 
-          cd src
-          dotnet restore
-          cd ..
+          cd src;
+          dotnet restore;
+          cd ..;
       - name: Build
         run:
-          cd src
+          cd src;
           dotnet build --configuration Release --no-restore
       
