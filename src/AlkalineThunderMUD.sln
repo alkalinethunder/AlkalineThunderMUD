@@ -12,6 +12,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Repo Root", "Repo Root", "{
 		..\.github\actions\deploy.yml = ..\.github\actions\deploy.yml
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlkalineThunderMud.Common", "AlkalineThunderMud.Common\AlkalineThunderMud.Common.csproj", "{CDF95116-0240-4271-93C1-79F99C026F52}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlkalineThunderMud.Server", "AlkalineThunderMud.Server\AlkalineThunderMud.Server.csproj", "{3DB7CA9C-E532-48AD-965A-012C497DE9EB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlkalineThunderMud.LocalTestingEnvironment", "AlkalineThunderMud.LocalTestingEnvironment\AlkalineThunderMud.LocalTestingEnvironment.csproj", "{3936B27C-E807-4832-9AD9-FBDAD4A000C3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,5 +31,17 @@ Global
 		{AC729F1E-F849-477C-96D0-1BF5443B247A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AC729F1E-F849-477C-96D0-1BF5443B247A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AC729F1E-F849-477C-96D0-1BF5443B247A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CDF95116-0240-4271-93C1-79F99C026F52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDF95116-0240-4271-93C1-79F99C026F52}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDF95116-0240-4271-93C1-79F99C026F52}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDF95116-0240-4271-93C1-79F99C026F52}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3DB7CA9C-E532-48AD-965A-012C497DE9EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DB7CA9C-E532-48AD-965A-012C497DE9EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DB7CA9C-E532-48AD-965A-012C497DE9EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DB7CA9C-E532-48AD-965A-012C497DE9EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3936B27C-E807-4832-9AD9-FBDAD4A000C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3936B27C-E807-4832-9AD9-FBDAD4A000C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3936B27C-E807-4832-9AD9-FBDAD4A000C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3936B27C-E807-4832-9AD9-FBDAD4A000C3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
