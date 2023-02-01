@@ -18,6 +18,7 @@ public class Connection : IDisposable
     {
         this.id = id;
         this.stream = stream;
+        this.connected = true;
     }
     
     public void Dispose()
@@ -37,24 +38,25 @@ public class Connection : IDisposable
 
     public void StartThread()
     {
-        connected = true;
-
         new Thread(RunConnection).Start();
     }
 
     private void RunConnection()
     {
         bool running = false;
-        
-        
+
+
         stream.WaitForConnection();
-        
+
         lock (lockObject)
         {
-            connected = stream.IsConnected;
             running = connected;
         }
-        
+
+        bool reading = false;
+        ValueTask readTask = default;
+        byte[] buffer = new byte[1];
+
         while (running)
         {
             while (sentMessages.TryDequeue(out NetworkMessageData? messageToSend))
@@ -62,23 +64,34 @@ public class Connection : IDisposable
                 using var writer = new BinaryWriter(stream, Encoding.UTF8, true);
                 messageToSend.Write(writer);
             }
-            
-            int firstByte = stream.ReadByte();
-            if (firstByte > -1)
+
+            if (!reading)
             {
+                reading = true;
+                readTask = stream.ReadExactlyAsync(buffer, 0, buffer.Length);
+            }
+            else
+            {
+                if (!readTask.IsCompleted)
+                    continue;
+
+                readTask = default;
+                byte firstByte = buffer[0];
+
+
+
                 Revision revision = (Revision)firstByte;
 
                 using BinaryReader reader = new BinaryReader(stream, Encoding.UTF8, true);
                 int messageLength = reader.ReadInt32();
                 byte[] messageData = reader.ReadBytes(messageLength);
-                
+
                 NetworkMessageData message = new NetworkMessageData(revision, messageData);
                 receivedMessages.Enqueue(message);
             }
-            
+
             lock (lockObject)
             {
-                connected = stream.IsConnected;
                 running = connected;
             }
         }

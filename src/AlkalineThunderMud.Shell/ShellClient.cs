@@ -97,6 +97,9 @@ public class ShellClient : IDisposable
         new Thread(RunConsole).Start();
 
         bool dc = false;
+        byte[] buffer = new byte[1];
+        bool reading = false;
+        ValueTask readTask = default;
         while (running)
         {
             while (messagesToSend.TryDequeue(out NetworkMessageData? messageToSend))
@@ -104,10 +107,23 @@ public class ShellClient : IDisposable
                 using BinaryWriter writer = new BinaryWriter(pipeClient, Encoding.UTF8, true);
                 messageToSend.Write(writer);
             }
-            
-            int firstByte = pipeClient.ReadByte();
-            if (firstByte != -1)
+
+            if (!reading)
             {
+                reading = true;
+                readTask = pipeClient.ReadExactlyAsync(buffer, 0, buffer.Length);
+            }
+            else
+            {
+                if (!readTask.IsCompleted)
+                    continue;
+
+                reading = false;
+                readTask = default;
+
+                byte firstByte = buffer[0];
+
+
                 Revision revision = (Revision)firstByte;
 
                 using var messageReader = new BinaryReader(pipeClient, Encoding.UTF8, true);

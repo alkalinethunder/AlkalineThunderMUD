@@ -36,8 +36,8 @@ internal class ServerState : IDisposable
             if (pipeServer == null)
                 break;
 
-            while (pipeServer.IsConnected)
-                continue;
+            if (pipeServer.IsConnected)
+                pipeServer.Disconnect();
             
             Console.WriteLine("Waiting for another login connection...");
             pipeServer.WaitForConnection();
